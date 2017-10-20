@@ -1,0 +1,17 @@
+require "../mmgo/mmgo-syntax.k"
+require "../mmgo/mmgo-common.k"
+
+module MMGO
+  imports MMGO-SYNTAX
+  imports MMGO-COMMON
+
+  rule int .Globals; T => T      [structural]
+
+  /*@ Write rule */
+  rule <k> Z:Id := V:Val => $unit ... </k>
+       <W> ... Z |-> ( _ => V ) ... </W> // Update global writes
+
+  /*@ Read rule */
+  rule <k> load Z:Id => V ... </k>
+       <W> ... Z |-> V ... </W>
+endmodule
