@@ -156,17 +156,17 @@ module MMGO-COMMON
 	 <backward> _ </backward>
        </chan>
 
-  // Auxiliary rule
-  rule mergeHB(M1:Map, M2:Map) => .Map // TODO
+
+  syntax Map ::= mergeHB(Map, Map)
+  rule <HB> mergeHB(H1:Map, .Map) => H1:Map </HB>	[structural]
 
   /*@ pend rule */
-  syntax Map ::= mergeHB(Map, Map)
   rule <goroutine>
          <k> pend(Ref:Int) => $unit ... </k>
 	 <sigma>
 	   <HB>
-             HMap:Map => mergeHB(HMap, HMapDP)
-           </HB>
+	     HMap:Map => mergeHB(HMap, HMapDP)
+	   </HB>
 	   <S> SSet:Set => SSet SSetDP </S>
 	 </sigma> // Change from Sigma to (Sigma + Sigma'')
        </goroutine>
@@ -175,7 +175,7 @@ module MMGO-COMMON
 	 <type> _ </type>
 	 <closed> _ </closed>
 	 <forward> _ </forward>
-	 <backward> (ListItem( ListItem(HMapDP)
+	 <backward> _:List (ListItem( ListItem(HMapDP)
                               ListItem(SSetDP) ) =>  .List) </backward>
        </chan>
   rule <goroutine>
@@ -192,7 +192,7 @@ module MMGO-COMMON
 	 <type> _ </type>
 	 <closed> _ </closed>
 	 <forward> _ </forward>
-	 <backward> _:List (ListItem( ListItem(HMapDP)
+	 <backward> (ListItem( ListItem(HMapDP)
                               ListItem(SSetDP) ) =>  .List) </backward>
        </chan>
 
