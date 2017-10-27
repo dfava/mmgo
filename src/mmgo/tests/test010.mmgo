@@ -1,0 +1,2 @@
+let c = make(chan bool, 2) in
+  c <- true; 1

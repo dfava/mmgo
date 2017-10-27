@@ -1,0 +1,5 @@
+int x;
+let c = make(chan int, 10) in 
+  let _ = go { x := 1; c <- 0 } in
+    let _ = <- c in
+      load x

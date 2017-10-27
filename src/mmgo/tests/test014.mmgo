@@ -1,0 +1,6 @@
+let cint = make(chan int, 1) in 
+  let cbool = make(chan bool, 1) in
+    close( cint );
+    close( cbool );
+    go{<- cint};
+    <- cbool

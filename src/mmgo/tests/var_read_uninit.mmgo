@@ -1,0 +1,2 @@
+int x, y;
+let r = load x in r

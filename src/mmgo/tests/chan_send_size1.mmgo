@@ -1,0 +1,2 @@
+let c = make(chan int, 1) in
+let r = 42 in c <- r

@@ -1,0 +1,1 @@
+let c = make(chan bool, 2) in 1

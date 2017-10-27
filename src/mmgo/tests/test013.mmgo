@@ -1,0 +1,6 @@
+let c = make(chan int, 2) in
+  { let _ = go{<- c} in
+      c <- 42;
+      c <- 21;
+      close(c);
+      c <- 10 }

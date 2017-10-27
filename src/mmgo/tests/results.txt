@@ -1,0 +1,26 @@
+$ run.py mmgo-dw *.mmgo
+Running chan_close_empty.mmgo... PASS
+Running chan_make.mmgo... PASS
+Running chan_send_closed.mmgo... PASS
+Running chan_send_size0.mmgo... PASS
+Running chan_send_size1.mmgo... PASS
+Running chan_send_size2.mmgo... PASS
+Running example.mmgo... PASS
+Running go_simple.mmgo... PASS
+Running let.mmgo... PASS
+Running seq_comp.mmgo... PASS
+Running seq_comp_chan.mmgo... FAIL
+Running seq_comp_if.mmgo... WARNING
+Running test007.mmgo... PASS
+Running test010.mmgo... PASS
+Running test011.mmgo... PASS
+Running test013.mmgo... PASS
+Running test014.mmgo... PASS
+Running var_dec.mmgo... PASS
+Running var_read.mmgo... PASS
+Running var_read_ignore.mmgo... PASS
+Running var_read_uninit.mmgo... PASS
+Running var_write.mmgo... PASS
+Pass: 20
+Warn: 1
+Fail: 1

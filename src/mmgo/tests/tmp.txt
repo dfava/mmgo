@@ -1,0 +1,38 @@
+./chan_close_empty.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./chan_close_empty.py:			sxq.execute("<type>{string(/generatedTop/C/chan/type)}</type>",
+./chan_close_empty.py:			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
+./chan_close_empty.py:			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",
+./chan_close_empty.py:		res = sxq.execute("<backward>{string(/generatedTop/C/chan/backward)}</backward>",
+./chan_make.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./chan_make.py:			sxq.execute("<type>{string(/generatedTop/C/chan/type)}</type>",
+./chan_make.py:			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
+./chan_make.py:			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",
+./chan_make.py:		res = sxq.execute("<backward>{string(/generatedTop/C/chan/backward)}</backward>",
+./chan_send_closed.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./chan_send_closed.py:			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
+./chan_send_closed.py:			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",
+./chan_send_closed.py:		res = sxq.execute("<backward>{string(/generatedTop/C/chan/backward)}</backward>",
+./chan_send_size0.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./chan_send_size1.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./chan_send_size2.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./example.py:		res = sxq.execute("<HB>{string(/generatedTop/T/goroutine/sigma/HB)}</HB>", self.config)
+./example.py:		res = sxq.execute("<k>{string(/generatedTop/T/goroutine)}</k>", self.config)
+./example.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./go_simple.py:		res = sxq.execute_all("/generatedTop/T/goroutine/k", self.config)#,
+./let.py:			sxq.execute("<body>{string(/generatedTop/T/goroutine/k)}</body>",
+./seq_comp.py:			sxq.execute("<body>{string(/generatedTop/T/goroutine/k)}</body>",
+./seq_comp_chan.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./seq_comp_chan.py:			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
+./seq_comp_chan.py:			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",
+./seq_comp_chan.py:		res = sxq.execute("<backward>{string(/generatedTop/C/chan/backward)}</backward>",
+./var_dec.py:		res = sxq.execute("<HB>{string(/generatedTop/T/goroutine/sigma/HB)}</HB>", self.config)
+./var_dec.py:				sxq.execute("<S>{string(/generatedTop/T/goroutine/sigma/S)}</S>",
+./var_dec.py:		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
+./var_read.py:			sxq.execute("<body>{string(/generatedTop/T/goroutine/k)}</body>",
+./var_read_ignore.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./var_read_uninit.py:			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
+./var_write.py:		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
+./var_write.py:		res = sxq.execute("<W>{string(/generatedTop/T/goroutine/sigma/HB)}</W>", self.config)
+./var_write.py:		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
+./var_write.py:		res = sxq.execute("<W>{string(/generatedTop/T/goroutine/sigma/S)}</W>", self.config)
+./var_write.py:		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
