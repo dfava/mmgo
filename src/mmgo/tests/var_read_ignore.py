@@ -16,4 +16,5 @@ class VarReadIgnoreSc(VarReadIgnore):
 		pass
 
 class VarReadIgnoreDw(VarReadIgnore):
+	def test_hb(self):
 		pass

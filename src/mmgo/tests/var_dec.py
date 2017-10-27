@@ -31,3 +31,6 @@ class VarDecDw(VarDec):
 		self.assertIn('y |-&gt;', res)
 		self.assertIn('z |-&gt;', res)
 		pass
+
+	def test_hb(self):
+		pass

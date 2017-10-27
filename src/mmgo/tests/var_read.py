@@ -15,4 +15,8 @@ class VarReadSc(VarRead):
 		pass
 
 class VarReadDw(VarRead):
+	def test_hb(self):
+		pass
+
+	def test_shadowed(self):
 		pass

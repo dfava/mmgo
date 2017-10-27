@@ -15,4 +15,5 @@ class VarReadUninitSc(VarReadUninit):
 		pass
 
 class VarReadUninitDw(VarReadUninit):
+	def test_hb(self):
 		pass

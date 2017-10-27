@@ -13,4 +13,8 @@ class GoSimpleSc(GoSimple):
 	pass
 
 class GoSimpleDw(GoSimple):
-	pass
+	def test_hb(self):
+		pass
+
+	def test_shadowed(self):
+		pass

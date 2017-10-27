@@ -25,3 +25,9 @@ class ExampleDw(Example):
 			hb = k2py.translate(r)
 			self.assertEqual(hb, expected)
 		pass
+
+	def test_hb(self):
+		pass
+
+	def test_shadowed(self):
+		pass
