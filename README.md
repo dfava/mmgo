@@ -39,27 +39,45 @@ This runs the *delayed-writes* version of the memory model (```mmgo-dw```).  The
 ## Development
 These step are only required if you want to further develop ```mmgo```.
 
-It assumes you have Python3 installed and assumes you checked out the repository at ```~/mmgo```.
+It assumes you have Python3 installed and assumes that you checked out the mmgo repository at ```~/mmgo```.
 
 
 #### 1. Set-up for running regression tests
-It is recommended to add ```$HOME/mmgo/bin``` and ```$HOME/mmgo/lib``` to your ```PYTHONPATH``` and ```$HOME/mmgo/bin``` to ```PATH```.  One way to do this, for example, is by adding the following lines to a ```.bash_profile```:
+It is recommended to:
+
+- add ```$HOME/mmgo/bin``` and ```$HOME/mmgo/lib``` to your ```PYTHONPATH```; and
+- add ```$HOME/mmgo/bin``` to ```PATH```.
+
+One way to do this, for example, is by adding the following lines to a ```.bash_profile```:
 
 ```
 export PYTHONPATH=$PYTHONPATH:$HOME/mmgo/bin:$HOME/mmgo/lib
 export PATH=$PATH:$HOME/mmgo/bin
 ```
 
+Install dependencies
+
+- [pyparsing](http://pyparsing.wikispaces.com/), which can be installed with pip:<br/>```pip3 install pyparsing```
+
+- an XML query language called [python-simplexquery](https://github.com/bellbind/python-simplexquery)
+
+```
+brew install xqilla
+pip3 install python-simplexquery
+```
+
+The regression scripts also use the Python [unittest](https://docs.python.org/3.6/library/unittest.html) library, which should be installed by default.
+
 #### 2. Running regression tests
 
-Here is an example of running a single test, in this case ```var_write.mmgo```, using the *delayed-writes* version of the memory model (```mmmgo-dw```):
+Here is an example of running a single test, in this case ```var_write.mmgo```, using the *delayed-writes* version of the memory model called ```mmmgo-dw```
 
 ```
 cd src/mmgo/tests
 mmgo-run.py mmgo-dw var_write.mmgo
 ```
 
-Here is an example of running all tests using the sequentially consistent version of the memory model (```mmgo-sc```):
+Here is an example of running all tests using the sequentially consistent version of the memory model, called ```mmgo-sc```
 
 ```
 cd src/mmgo/tests
