@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+# Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 import io 
 import os
 import sys

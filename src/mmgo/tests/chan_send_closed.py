@@ -1,3 +1,4 @@
+# Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 import re
 import simplexquery as sxq
 

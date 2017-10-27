@@ -1,3 +1,4 @@
+# Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 import simplexquery as sxq
 import myunittest
 

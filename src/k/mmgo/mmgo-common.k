@@ -1,3 +1,4 @@
+// Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 require "substitution.k"
 require "mmgo-syntax.k"
 

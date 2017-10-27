@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 import os
 import sys
 import xml.dom.minidom

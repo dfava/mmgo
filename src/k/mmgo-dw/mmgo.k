@@ -1,3 +1,4 @@
+// Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 require "../mmgo/mmgo-syntax.k"
 require "../mmgo/mmgo-common.k"
 
