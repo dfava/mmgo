@@ -4,10 +4,10 @@ import simplexquery as sxq
 import k2py
 import myunittest
 
-class VarWrite(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	pass
 
-class VarWriteSc(VarWrite):
+class Sc(Common):
 	def test_write_events(self):
 		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
 		res = res.replace('&gt;', '>')[3:-4]
@@ -15,7 +15,7 @@ class VarWriteSc(VarWrite):
 		self.assertEqual(w, {'x' : 17, 'y' : 24})
 		pass
 
-class VarWriteDw(VarWrite):
+class Dw(Common):
 	def test_hb(self):
 		res = sxq.execute("<W>{string(/generatedTop/W)}</W>", self.config)
 		res = res.replace('&gt;', '>')[3:-4]

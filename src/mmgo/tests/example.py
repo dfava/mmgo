@@ -4,7 +4,7 @@ import simplexquery as sxq
 import myunittest
 import k2py
 
-class Example(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	def test_k(self):
 		res = sxq.execute_all("/generatedTop/T/goroutine/k", self.config)
 		expected = ["<k> 1 </k>", "<k> $unit </k>"]
@@ -13,10 +13,7 @@ class Example(myunittest.TestCase):
 			expected.remove(r)
 		pass
 
-class ExampleSc(Example):	
-	pass
-
-class ExampleDw(Example):	
+class Dw(Common):	
 	def test_hb(self):
 		res = sxq.execute_all("/generatedTop/T/goroutine/sigma/HB", self.config)
 		expected = {'x' : set([2, 4])}

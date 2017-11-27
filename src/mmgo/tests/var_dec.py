@@ -2,7 +2,7 @@
 import simplexquery as sxq
 import myunittest
 
-class VarDec(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	def test_shadowed_init(self):
 		# Make sure shadowed set is empty
 		self.assertEqual(
@@ -11,11 +11,7 @@ class VarDec(myunittest.TestCase):
 				"<S> .Set </S>")
 		pass
 
-
-class VarDecSc(VarDec):
-		pass
-
-class VarDecDw(VarDec):
+class Dw(Common):
 	def test_hb_init(self):
 		# Make sure declared variables are in the happened before set
 		res = sxq.execute("<HB>{string(/generatedTop/T/goroutine/sigma/HB)}</HB>", self.config)

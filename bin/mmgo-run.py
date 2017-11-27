@@ -7,6 +7,7 @@ import argparse
 import subprocess
 
 import kprint
+from myunittest import myunittest
 
 def CompletedProcess_to_str(res):
 	if res.returncode == 0:
@@ -52,13 +53,12 @@ def run(mmgo_dir, program, dry_run=False, debug=False):
 	return res
 
 
-def check(semantics, program, configuration, dry_run=False):
+def check_TODO_remove_OLD(semantics, program, configuration, dry_run=False):
 	import unittest
 	# Update python path if needed
 	mmgo_program_path = os.path.dirname(os.path.abspath(program))
 	if mmgo_program_path not in sys.path:
 		sys.path.append(mmgo_program_path)
-	from myunittest import myunittest
 	# Try to import unittest
 	module_name = os.path.splitext(program)[0]
 	if not os.path.isfile(module_name + ".py"):
@@ -94,7 +94,7 @@ def main():
 	for program in args.programs:
 		print("Running " + program + "... ", end=end, flush=True)
 		ret = run(mmgo_dir, os.path.abspath(program), args.d)
-		res = check(args.semantics, program, None if args.d else ret.stdout.replace("<-","&lt;-"), args.d)
+		res = myunittest.check(args.semantics, program, None if args.d else ret.stdout.replace("<-","&lt;-"), args.d, output = io.StringIO())
 		check_failed = res != None and (len(res.errors) != 0 or len(res.failures) != 0)
 		if (check_failed and args.v) \
 				or (res != None and len(args.programs) == 1):

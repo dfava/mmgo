@@ -3,7 +3,7 @@ import re
 import simplexquery as sxq
 import myunittest
 
-class VarRead(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	def test_k(self):
 		self.assertEqual(
 			sxq.execute("<body>{string(/generatedTop/T/goroutine/k)}</body>",
@@ -11,10 +11,7 @@ class VarRead(myunittest.TestCase):
 			"<body> 42 </body>")
 		pass
 
-class VarReadSc(VarRead):
-		pass
-
-class VarReadDw(VarRead):
+class Dw(Common):
 	def test_hb(self):
 		pass
 

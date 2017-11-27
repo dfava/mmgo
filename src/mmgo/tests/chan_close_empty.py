@@ -4,7 +4,7 @@ import simplexquery as sxq
 
 import myunittest
 
-class ChanCloseEmpty(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	def test_k(self):
 		self.assertEqual(
 			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
@@ -37,9 +37,3 @@ class ChanCloseEmpty(myunittest.TestCase):
 		m = re.search("<backward> ListItem \(.*\) ListItem \(.*\) </backward>", res)
 		self.assertIsNotNone(m)
 		pass
-
-class ChanCloseEmptySc(ChanCloseEmpty):
-	pass
-class ChanCloseEmptyDw(ChanCloseEmpty):
-	pass
-

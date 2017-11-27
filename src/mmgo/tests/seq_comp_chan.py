@@ -3,7 +3,7 @@ import re
 import simplexquery as sxq
 import myunittest
 
-class SeqCompChan(myunittest.TestCase):
+class Common(myunittest.TestCase):
 	def test_k(self):
 		self.assertEqual(
 			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
@@ -31,10 +31,4 @@ class SeqCompChan(myunittest.TestCase):
 				self.config)
 		m = re.search("<backward> ListItem \(.*\) ListItem \(.*\) </backward>", res)
 		self.assertIsNotNone(m)
-		pass
-
-class SeqCompChanSc(SeqCompChan):
-		pass
-
-class SeqCompChanDw(SeqCompChan):
 		pass
