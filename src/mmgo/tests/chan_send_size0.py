@@ -8,5 +8,5 @@ class Common(myunittest.TestCase):
 		self.assertEqual(
 			sxq.execute("<k>{string(/generatedTop/T/goroutine/k)}</k>",
 				self.config),
-			"<k> pend ( 1 ) </k>")
+			"<k> channel ( 1 ) &lt;- 42 </k>")
 		pass

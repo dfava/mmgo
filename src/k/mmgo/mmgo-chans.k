@@ -172,7 +172,26 @@ module MMGO-CHANS
 
 
 	/*@ Synchronous send/receive */
-
+	rule <goroutine>
+				<k> channel(Ref:Int) <- V:Val => $unit ... </k>
+				<sigma>
+					<HB> HMapS:Map => mergeHB( HMapS, HMapR ) </HB>
+					<S>  SSetS:Set => SSetS SSetR </S>
+				</sigma>
+			</goroutine>
+			<goroutine>
+				<k> <- channel(Ref:Int) => V ... </k>
+				<sigma>
+					<HB> HMapR:Map => mergeHB( HMapS, HMapR ) </HB>
+					<S>  SSetR:Set => SSetS SSetR </S>
+				</sigma>
+			</goroutine>
+				<chan>
+					<ref> Ref </ref>
+					<type> _ </type>
+					<forward> .List </forward>
+					<backward> .List </backward>
+				</chan>
 
 
 	/*@ Closing a channel

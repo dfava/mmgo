@@ -1,0 +1,3 @@
+let c = make(chan int, 0) in
+	let _ = go { c <- 42 } in
+		let r = <- c in r
