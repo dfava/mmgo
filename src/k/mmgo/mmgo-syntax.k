@@ -10,7 +10,7 @@ module MMGO-SYNTAX
 		  AExp "+" AExp	[strict, left]
 		| AExp "-" AExp	[strict, left]
   syntax TVal ::= Bool | Int
-  syntax Val ::= TVal | Id | "channel" "(" Int ")"
+  syntax Val ::= TVal | Id | "channel" "(" Int ")" | "$eot"
   syntax Exp ::= Val | AExp
   	       // on "if" there is no need for strict(1) since arg 1 is Val
                | "if" Val "then" Term "else" Term	[klabel(If)]

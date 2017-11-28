@@ -18,17 +18,11 @@ class Common(myunittest.TestCase):
 				self.config),
 			"<type> int </type>")
 
-	def test_c_closed(self):
-		self.assertEqual(
-			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
-				self.config),
-			"<closed> true </closed>")
-
 	def test_c_forwardq(self):
 		self.assertEqual(
 			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",
 				self.config),
-			"<forward> .List </forward>")
+			"<forward> ListItem ( ListItem ( $eot ) ListItem ( .Map ) ListItem ( .Set ) ) </forward>")
 
 	def test_c_backwardq(self):
 		# Make sure there are two items on the backward queue

@@ -19,13 +19,6 @@ class Common(myunittest.TestCase):
 			"<type> bool </type>")
 		pass
 
-	def test_c_closed(self):
-		self.assertEqual(
-			sxq.execute("<closed>{string(/generatedTop/C/chan/closed)}</closed>",
-				self.config),
-			"<closed> false </closed>")
-		pass
-
 	def test_c_forwardq(self):
 		self.assertEqual(
 			sxq.execute("<forward>{string(/generatedTop/C/chan/forward)}</forward>",

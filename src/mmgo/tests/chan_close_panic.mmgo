@@ -1,0 +1,5 @@
+let c = make(chan int, 2) in
+	let r = 10 in
+		let _ = c <- r in 
+			let _ = close(c) in
+				close(c)

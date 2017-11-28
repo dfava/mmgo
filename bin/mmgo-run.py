@@ -85,14 +85,14 @@ def main():
 							+ os.sep + ".." + os.sep + "src" + os.sep + "k" + os.sep
 	mmgo_dir += args.semantics
 	if args.k: # Build the semantics before running
-		print("kompile " + args.semantics + "... ", end=end, flush=True)
+		print("kompile " + args.semantics + " ... ", end=end, flush=True)
 		ret = build(mmgo_dir, mmgo_bin, args.d)
 		print(CompletedProcess_to_str(ret))
 		if ret.returncode != 0:
 			return
 	statuses = []
 	for program in args.programs:
-		print("Running " + program + "... ", end=end, flush=True)
+		print("Running " + program + " ... ", end=end, flush=True)
 		ret = run(mmgo_dir, os.path.abspath(program), args.d)
 		res = myunittest.check(args.semantics, program, None if args.d else ret.stdout.replace("<-","&lt;-"), args.d, output = io.StringIO())
 		check_failed = res != None and (len(res.errors) != 0 or len(res.failures) != 0)

@@ -69,7 +69,6 @@ module MMGO-COMMON
 		  <chan multiplicity="*">
 		    <ref> . </ref>
 		    <type> . </type>
-		    <closed> . </closed>
 		    <forward> .List </forward>
 		    <backward> .List </backward>
 		  </chan>
