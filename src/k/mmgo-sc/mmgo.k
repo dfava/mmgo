@@ -1,18 +1,15 @@
 // Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 require "../mmgo/mmgo-syntax.k"
-require "../mmgo/mmgo-common.k"
+require "../mmgo/mmgo-local.k"
+require "../mmgo/mmgo-chans.k"
+require "../mmgo/mmgo-go.k"
+require "mmgo-smem.k"
 
 module MMGO
   imports MMGO-SYNTAX
-  imports MMGO-COMMON
-
+  imports MMGO-LOCAL
+  imports MMGO-CHANS
+  imports MMGO-GO
+  imports MMGO-SMEM
   rule int .Globals; T => T      [structural]
-
-  /*@ Write rule */
-  rule <k> Z:Id := V:Val => $unit ... </k>
-       <W> ... Z |-> ( _ => V ) ... </W> // Update global writes
-
-  /*@ Read rule */
-  rule <k> load Z:Id => V ... </k>
-       <W> ... Z |-> V ... </W>
 endmodule
