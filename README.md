@@ -59,13 +59,6 @@ Install dependencies
 
 - [pyparsing](http://pyparsing.wikispaces.com/), which can be installed with pip:<br/>```pip3 install pyparsing```
 
-- an XML query language called [python-simplexquery](https://github.com/bellbind/python-simplexquery)
-
-```
-brew install xqilla
-pip3 install python-simplexquery
-```
-
 The regression scripts also use the Python [unittest](https://docs.python.org/3.6/library/unittest.html) library, which should be installed by default.
 
 #### 2. Running regression tests
@@ -83,3 +76,10 @@ Here is an example of running all tests using the sequentially consistent versio
 cd src/mmgo/tests
 mmgo-run.py mmgo-sc *.mmgo
 ```
+
+## Updates
+
+
+|Date|Comment|
+|:---|:---|
+|Nov 29, 2017 | Update to test framework<br/>Removed dependency on simplexquery library |
