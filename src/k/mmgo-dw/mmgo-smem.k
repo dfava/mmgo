@@ -6,6 +6,18 @@ module MMGO-SMEM
   imports MMGO-SYNTAX
   imports MMGO-COMMON
 
+  syntax Map ::= mergeHbAux(Map,Map,K,K)
+               | mergeHbAux2(K,K,K,K,K)
+               | mergeHbAux3(K,K,K,K)
+  rule mergeHB(M1:Map, (Key|->Val) M2:Map) => mergeHB(M1 (Key|->Val), M2:Map)
+       requires notBool( Key in_keys ( M1 ))	[anywhere, structural]
+  rule mergeHB(M1:Map, (Key |-> Val:K) M2:Map) => mergeHbAux(M1, M2, Key, Val)
+       requires Key in_keys ( M1 )						[anywhere, structural]
+  rule mergeHbAux(M1,M2,I,V) => mergeHbAux2(M1,M2,I,(M1:Map)[I:Id],V) [anywhere, structural]
+  rule mergeHbAux2(M1,M2,I,V1,V2) => mergeHbAux3(M1,M2,I,V1:Set V2) [anywhere, structural]
+  rule mergeHbAux3(M1,M2,I,V1) => mergeHB(M1:Map[I:Id <- V1:Set],M2) [anywhere, structural]
+
+
   /*@ Traverse through the globals and performs the necessary initialization
       according to the delayed-writes semantic.
       At the start of execution, the global variables are initialized by
@@ -31,26 +43,6 @@ module MMGO-SMEM
   rule <k> (int .Globals => auxInit(choice(WMap),keys(WMap))) ; T </k>
        <W> WMap:Map </W>
 
-  syntax Map ::= mergeHbAux(Map,Map,K,K)
-               | mergeHbAux2(K,K,K,K,K)
-               | mergeHbAux3(K,K,K,K)
-  rule <HB>
-         mergeHB(M1:Map, (Key|->Val) M2:Map) => mergeHB(M1 (Key|->Val), M2:Map)
-       </HB>
-       requires notBool( Key in_keys ( M1 ))	[structural]
-  rule <HB>
-         mergeHB(M1:Map, (Key |-> Val:K) M2:Map) => mergeHbAux(M1, M2, Key, Val)
-       </HB>
-       requires Key in_keys ( M1 )		[structural]
-  rule <HB>
-         mergeHbAux(M1,M2,I,V) => mergeHbAux2(M1,M2,I,(M1:Map)[I:Id],V)
-       </HB>					[structural]
-  rule <HB>
-         mergeHbAux2(M1,M2,I,V1,V2) => mergeHbAux3(M1,M2,I,V1:Set V2)
-       </HB>			       		[structural]
-  rule <HB>
-         mergeHbAux3(M1,M2,I,V1) => mergeHB(M1:Map[I:Id <- V1:Set],M2)
-       </HB>					[structural]
        
   /*@ Write rule */
   rule <k> Z:Id := V:Val => $unit ... </k>

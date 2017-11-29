@@ -7,6 +7,8 @@ import inspect
 import unittest
 import simplexquery as sxq
 
+import xml2py
+
 class TestCase(unittest.TestCase):
 	def __init__(self, methodName='runTest', config=None):
 		super(TestCase, self).__init__(methodName)
@@ -15,17 +17,17 @@ class TestCase(unittest.TestCase):
 	def test_hb(self):
 		'''A test for happens before assuming an mmgo-sc semantics.
 		The subclasses for different semantics are suposed to overide this.'''
-		res = sxq.execute_all("/generatedTop/T/goroutine/sigma/HB", self.config)
-		for r in res:
-			self.assertEqual(r, '<HB> .Map </HB>')
+		self.assertGreater(len(self.config.goroutines), 0)
+		for gr in self.config.goroutines:
+			self.assertEqual(gr.sigma['hb'], {})
 		pass
 
-	def test_shadowed(self):
+	def best_shadowed(self):
 		'''A test for shadowed assuming an mmgo-sc semantics.
 		The subclasses for different semantics are suposed to overide this.'''
-		res = sxq.execute_all("/generatedTop/T/goroutine/sigma/S", self.config)
-		for r in res:
-			self.assertEqual(r, '<S> .Set </S>')
+		self.assertGreater(len(self.config.goroutines), 0)
+		for gr in self.config.goroutines:
+			self.assertEqual(gr.sigma['s'], {})
 		pass
 
 
@@ -56,7 +58,7 @@ class myunittest():
 			if dry_run:
 				print(test_name)
 				continue
-			suite.addTest(kls(test_name, config=configuration.strip()))
+			suite.addTest(kls(test_name, config=xml2py.xml2py(configuration)))
 		res = unittest.TextTestRunner(stream=output).run(suite)
 		return res
 

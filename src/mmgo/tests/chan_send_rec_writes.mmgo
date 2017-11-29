@@ -1,0 +1,9 @@
+int x, y;
+let c = make(chan int, 0) in
+	let _ = go {
+								let _ = x:= 2 in
+									let _ = c <- 42 in x := 26
+							} in
+		let _ = x := 1 in
+			let r = <- c in
+				let _ = x := 16 in y := r

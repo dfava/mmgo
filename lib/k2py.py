@@ -7,6 +7,7 @@ def get_grammar(debug=False):
 	grammar = Forward()
 	integer = Word( nums ).setParseAction(lambda s,l,t: int(t[0]))
 	identifier = Word( alphas )
+	special    = "$eot"
 	lp = Suppress(Literal("("))
 	rp = Suppress(Literal(")"))
 	ListItem  = Literal("ListItem") + lp + grammar + rp
@@ -31,7 +32,7 @@ def get_grammar(debug=False):
 	MapItem   = MapItem.setParseAction(lambda s,l,t: {t[0]:t[2]})
 	Map       = (MapEmpty | OneOrMore(MapItem))
 	Map       = Map.setParseAction(lambda s, l, t: {k: v for d in t for k, v in d.items()})
-	grammar << (List | Set | Map | integer | identifier | lp + grammar + rp )
+	grammar << (List | Set | Map | integer | identifier | special | lp + grammar + rp )
 	return grammar
 
 def translate(kstr, grammar=None):
@@ -64,6 +65,11 @@ class test(unittest.TestCase):
 	def test_set(self):
 		kstr = "x |-> ( SetItem ( 2 ) SetItem ( 6 ) SetItem ( 10 ) ) y |-> ( SetItem ( 3 ) SetItem ( 9 ) )"
 		self.assertEqual(translate(kstr), {'x' : {2, 6, 10}, 'y' : {3, 9}})
+		pass
+
+	def test_eot(self):
+		kstr = "ListItem ( ListItem ( $eot ) ListItem ( .Map ) ListItem ( .Set ) ) ListItem ( ListItem ( 10 ) ListItem ( .Map ) ListItem ( .Set ) )"
+		self.assertEqual(translate(kstr), [['$eot', {}, set()], [10, {}, set()]])
 		pass
 
 if __name__ == "__main__":
