@@ -6,6 +6,8 @@ module MMGO-CHANS
 	imports MMGO-SYNTAX
 	imports MMGO-COMMON
 
+	syntax Val ::= "channel" "(" Int ")" | "$eot"
+
 	syntax Map ::= mergeHB(Map, Map)
 	rule mergeHB(H1:Map, .Map) => H1:Map [anywhere, structural]
 
