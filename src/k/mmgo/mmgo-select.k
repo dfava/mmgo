@@ -145,6 +145,6 @@ module MMGO-SELECT
   rule (let Z:Id =       <- C:Val in T:Term):LetChan =>   <- C ~> let Z = $HOLE in T
   rule (let Z:Id = C:Val <- V:Val in T:Term):LetChan => C <- V ~> let Z = $HOLE in T
   rule (let Z:Id = default        in T:Term):LetDef  => T[default/Z]
-  rule (V:Val ~> let Z:Id = $HOLE in T:Term) => let Z = V in T
+  rule V:Val ~> let Z:Id = $HOLE in T:Term => let Z = V in T
 
 endmodule
