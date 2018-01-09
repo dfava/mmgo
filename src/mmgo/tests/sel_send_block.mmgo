@@ -1,0 +1,5 @@
+let c = make(chan int, 1) in
+  let _ = c <- 42 in
+    let _ = sel{
+                { let _ = c <- 41 in 1 }
+                } in 2

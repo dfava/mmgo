@@ -1,3 +1,3 @@
 let c = make(chan int, 2) in
   let ignore = close(c) in 
-		close(c)
+    close(c)

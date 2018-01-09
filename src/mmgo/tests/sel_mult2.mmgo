@@ -1,0 +1,6 @@
+let c = make(chan int, 1) in
+  sel {
+   { let r = <- c in r }
+   { let r = c <- 42 in r }
+   { let r = default in r }
+  }

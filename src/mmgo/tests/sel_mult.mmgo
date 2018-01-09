@@ -1,0 +1,16 @@
+let c1 = make(chan int, 1) in
+let c2 = make(chan int, 1) in
+let c3 = make(chan int, 1) in
+let c4 = make(chan int, 1) in
+let c5 = make(chan int, 1) in
+let _ = c1 <- 42 in
+let _ = c2 <- 21 in
+let _ = c4 <- 6 in
+let _ = 0 in
+sel{
+  { let r = <- c1 in r }
+  { let r = <- c2 in r }
+  { let r = <- c3 in r }
+  { let r = c4 <- 10 in r }
+  { let r = c5 <- 1  in 13 }
+}

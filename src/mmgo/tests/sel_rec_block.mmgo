@@ -1,0 +1,4 @@
+let c = make(chan int, 1) in
+  let _ = sel{
+              { let r = <- c in 1 }
+              } in 2

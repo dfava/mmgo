@@ -18,7 +18,7 @@ module MMGO-LOCAL
   syntax Id ::= "$x"  [latex(\_)]
   /*@ Seq. comp. defined with let construct */
   rule T1:Exp ; T2:Term => let $x = T1 in T2  [macro] // can be defined either
-       	      		       	       	      // as [macro] or as [structural]
+                                        // as [macro] or as [structural]
   rule {} => .        [structural]
-  rule {T:Term} => T	[structural]
+  rule {T:Term} => T  [structural]
 endmodule

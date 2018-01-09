@@ -28,34 +28,34 @@ module MMGO-COMMON
   configuration <T color="yellow">
                   <goroutine multiplicity="*" color="blue">
                     <k color="green"> $PGM:Pgm </k>
-		    <sigma color="red">
-		      <HB color="Orange">
+        <sigma color="red">
+          <HB color="Orange">
                         .Map // N:Int<Var:Id> implemented as a
-			                      // map of Var:Id to Set of N:Int
+                            // map of Var:Id to Set of N:Int
                       </HB>
-		      <S color="Orchid"> .Set </S>// N:Int, implemented as a set
-		                                  // of Int (both in dw and drw)
-		    </sigma>
-		  </goroutine>
-		</T>
-		<W color="Aquamarine">
+          <S color="Orchid"> .Set </S>// N:Int, implemented as a set
+                                      // of Int (both in dw and drw)
+        </sigma>
+      </goroutine>
+    </T>
+    <W color="Aquamarine">
                   .Map // The map is interpreted differently depending on the
-		  // memory model:
-		  // 1) mmgo-sc (sequential consistent or strong model
-		  //    its a map from variable to values
-		  // 2) mmgo-dw (delayed writes)
-		  //    in dw it corresponds to N:Int<Var:Id, Value:Val>,
-		  //    which is implemented as map of Var:Id to a Map of
-		  //    N:Int to Val.
+      // memory model:
+      // 1) mmgo-sc (sequential consistent or strong model
+      //    its a map from variable to values
+      // 2) mmgo-dw (delayed writes)
+      //    in dw it corresponds to N:Int<Var:Id, Value:Val>,
+      //    which is implemented as map of Var:Id to a Map of
+      //    N:Int to Val.
                 </W>
-		<C> // Channels
-		  <chan multiplicity="*">
-		    <ref> . </ref>
-		    <type> . </type>
-		    <forward> .List </forward>
-		    <backward> .List </backward>
-		  </chan>
-		</C>
+    <C> // Channels
+      <chan multiplicity="*">
+        <ref> . </ref>
+        <type> . </type>
+        <forward> .List </forward>
+        <backward> .List </backward>
+      </chan>
+    </C>
 
   /*@ This rule requires variables to be declared at most once. */
   rule <k> int (Z:Id,Zs:Globals => Zs);_ </k>

@@ -10,9 +10,9 @@ module MMGO-SMEM
                | mergeHbAux2(K,K,K,K,K)
                | mergeHbAux3(K,K,K,K)
   rule mergeHB(M1:Map, (Key|->Val) M2:Map) => mergeHB(M1 (Key|->Val), M2:Map)
-       requires notBool( Key in_keys ( M1 ))	[anywhere, structural]
+       requires notBool( Key in_keys ( M1 ))  [anywhere, structural]
   rule mergeHB(M1:Map, (Key |-> Val:K) M2:Map) => mergeHbAux(M1, M2, Key, Val)
-       requires Key in_keys ( M1 )						[anywhere, structural]
+       requires Key in_keys ( M1 )            [anywhere, structural]
   rule mergeHbAux(M1,M2,I,V) => mergeHbAux2(M1,M2,I,(M1:Map)[I:Id],V) [anywhere, structural]
   rule mergeHbAux2(M1,M2,I,V1,V2) => mergeHbAux3(M1,M2,I,V1:Set V2) [anywhere, structural]
   rule mergeHbAux3(M1,M2,I,V1) => mergeHB(M1:Map[I:Id <- V1:Set],M2) [anywhere, structural]
@@ -48,9 +48,9 @@ module MMGO-SMEM
   rule <k> Z:Id := V:Val => $unit ... </k>
        <S> Ss => ( Ss Sh ) </S> // Add to shadow set
        <HB>
-         ... Z |-> ( Sh => SetItem(!N:Int) Sh ) ...	// Add to happens before
+         ... Z |-> ( Sh => SetItem(!N:Int) Sh ) ... // Add to happens before
        </HB>
-       <W> ... Z |-> ( Mw => Mw[!N:Int <- V] ) ... </W>	// Add to global writes
+       <W> ... Z |-> ( Mw => Mw[!N:Int <- V] ) ... </W> // Add to global writes
 
   /*@ Read rule */
   // (Mw[Z])[ (choice(keys((Mw[Z])) -Set Ss)) ]
@@ -58,13 +58,13 @@ module MMGO-SMEM
        <S> Ss:Set </S>
        <W> Mw:Map </W>
   syntax K ::= loadAux(Map,Set,Id)
-  	     | loadAux2(K,Set)
-	     | loadAux3(K,K,Set)
-	     | loadAux4(K,K)
-	     | loadAux5(K,K)
-  rule loadAux(M,S,I)     => loadAux2(M[I],S)			[structural]
-  rule loadAux2(M2,S)     => loadAux3(keys(M2),M2,S)		[structural]
-  rule loadAux3(S2,M2,S)  => loadAux4(S2:Set -Set S, M2)	[structural]
-  rule loadAux4(S3,M2)    => loadAux5(choice(S3:Set),M2)	[structural]
-  rule loadAux5(K,M2)     => (M2:Map)[K:Int]			[structural]
+         | loadAux2(K,Set)
+       | loadAux3(K,K,Set)
+       | loadAux4(K,K)
+       | loadAux5(K,K)
+  rule loadAux(M,S,I)     => loadAux2(M[I],S)     [structural]
+  rule loadAux2(M2,S)     => loadAux3(keys(M2),M2,S)    [structural]
+  rule loadAux3(S2,M2,S)  => loadAux4(S2:Set -Set S, M2)  [structural]
+  rule loadAux4(S3,M2)    => loadAux5(choice(S3:Set),M2)  [structural]
+  rule loadAux5(K,M2)     => (M2:Map)[K:Int]      [structural]
 endmodule

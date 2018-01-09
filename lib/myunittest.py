@@ -5,9 +5,9 @@ import imp
 import ast 
 import inspect
 import unittest
-import simplexquery as sxq
 
 import xml2py
+import xml.etree.ElementTree as et
 
 class TestCase(unittest.TestCase):
 	def __init__(self, methodName='runTest', config=None):
@@ -58,7 +58,11 @@ class myunittest():
 			if dry_run:
 				print(test_name)
 				continue
-			suite.addTest(kls(test_name, config=xml2py.xml2py(configuration)))
+			try:
+				suite.addTest(kls(test_name, config=xml2py.xml2py(configuration)))
+			except et.ParseError as e:
+				sys.stderr.write("Error parsing the following configuration='%s'\n" % configuration)
+				raise e
 		res = unittest.TextTestRunner(stream=output).run(suite)
 		return res
 

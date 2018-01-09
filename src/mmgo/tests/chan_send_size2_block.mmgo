@@ -1,7 +1,7 @@
 let c = make(chan int, 2) in
-	let r1 = 42 in 
-		let r2 = 17 in
-			let r3 = 6 in
-				let _ = c <- r1 in
-					let _ = c <- r2 in
-						c <- r3
+  let r1 = 42 in 
+    let r2 = 17 in
+      let r3 = 6 in
+        let _ = c <- r1 in
+          let _ = c <- r2 in
+            c <- r3
