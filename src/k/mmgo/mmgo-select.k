@@ -64,6 +64,15 @@ module MMGO-SELECT
       </chan>
       requires (EotInFQ(FQ) ==Bool false) // channel is open  
                andBool (size(FQ) >Int 0) // channel is async
+  syntax SelBranchStatus ::= "$Sync"
+  /*@ (sync send) TODO */
+  rule <k> GetSelBranchStatus( let Z:Id = channel(Ref:Int) <- V:Val in T:Term ) => $Sync ... </k>
+       <chan>
+         <ref> Ref </ref>
+         <type> _ </type>
+        <forward> .List </forward>
+        <backward> .List </backward> // channel is synchronous and open
+      </chan>
 
   //@ (receive) Can always receive on a closed channel
   rule <k> GetSelBranchStatus( let Z:Id = <- channel(Ref:Int) in T:Term ) => $En ... </k>
@@ -95,6 +104,14 @@ module MMGO-SELECT
         <backward> BQ </backward>
       </chan>
       requires (size(BQ) >Int 0) // channel is async
+  /*@ (sync receive) TODO */
+  rule <k> GetSelBranchStatus( let Z:Id = <- channel(Ref:Int) in T:Term ) => $Sync ... </k>
+       <chan>
+         <ref> Ref </ref>
+         <type> _ </type>
+        <forward> .List </forward>
+        <backward> .List </backward> // channel is synchronous and open
+      </chan>
 
   rule GetSelBranchStatus( let Z:Id = default in T:Term ) => $Def
 

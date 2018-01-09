@@ -11,7 +11,7 @@ from mmgo import mmgo
 class Common(myunittest.TestCase):
   def test_k(self):
     self.assertEqual(len(self.config.goroutines), 1)
-    self.assertEqual(self.config.goroutines[0].k, ["42", "21", "13"])
+    self.assertIn(self.config.goroutines[0].k, ["42", "21", "13"])
     pass
 
 if __name__ == "__main__":

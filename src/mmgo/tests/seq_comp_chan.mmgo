@@ -1,3 +1,0 @@
-let c = make(chan int, 2) in
-close(c);
-c <- 1
