@@ -66,6 +66,7 @@ module MMGO-CHANS
           <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma>
+        <select> _ </select>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -83,6 +84,7 @@ module MMGO-CHANS
           <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma>
+        <select> _ </select>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -120,6 +122,7 @@ module MMGO-CHANS
           <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
+        <select> _ </select>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -130,13 +133,14 @@ module MMGO-CHANS
         <backward> BQ:List => ListItem( ListItem(HMap)
                               ListItem(SSet) ) BQ </backward>
       </chan>
-      requires notBool( V ==K "$eof" )
+      requires notBool( V ==K $eot )
   rule <goroutine>
         <k> <- channel(Ref:Int) => V ... </k>
         <sigma>
           <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
+        <select> _ </select>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -147,7 +151,7 @@ module MMGO-CHANS
         <backward> BQ:List => ListItem( ListItem(HMap)
                                         ListItem(SSet) ) BQ </backward>
       </chan>
-      requires notBool( V ==K "$eof" )
+      requires notBool( V ==K $eot )
 
 
   /*@ Receiving on a closed channel returns the zero element
@@ -161,6 +165,7 @@ module MMGO-CHANS
           <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
+        <select> _ </select>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -180,6 +185,7 @@ module MMGO-CHANS
           <HB> HMapS:Map => mergeHB( HMapS, HMapR ) </HB>
           <S>  SSetS:Set => SSetS SSetR </S>
         </sigma>
+        <select> _ </select>
       </goroutine>
       <goroutine>
         <k> <- channel(Ref:Int) => V ... </k>
@@ -187,6 +193,7 @@ module MMGO-CHANS
           <HB> HMapR:Map => mergeHB( HMapS, HMapR ) </HB>
           <S>  SSetR:Set => SSetS SSetR </S>
         </sigma>
+        <select> _ </select>
       </goroutine>
         <chan>
           <ref> Ref </ref>
@@ -205,6 +212,7 @@ module MMGO-CHANS
           <HB> HMap:Map </HB>
           <S>  SSet:Set </S>
         </sigma>
+        <select> _ </select>
       </goroutine>
         <chan>
           <ref> Ref </ref>
