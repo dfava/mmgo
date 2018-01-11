@@ -1,0 +1,13 @@
+let sync1 = make(chan int, 0) in
+let c2    = make(chan int, 1) in
+let _ = go {
+  sel {
+    { let r = <- sync1 in r }
+  }
+} in 
+let _ = c2 <- 21 in
+let _ = 0 in
+sel{
+  { let r = sync1 <- 42 in 1 }
+  { let r = c2 <- 13 in r }
+}

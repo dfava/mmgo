@@ -28,16 +28,19 @@ module MMGO-COMMON
   configuration <T color="yellow">
                   <goroutine multiplicity="*" color="blue">
                     <k color="green"> $PGM:Pgm </k>
-        <sigma color="red">
-          <HB color="Orange">
-                        .Map // N:Int<Var:Id> implemented as a
-                            // map of Var:Id to Set of N:Int
-                      </HB>
-          <S color="Orchid"> .Set </S>// N:Int, implemented as a set
-                                      // of Int (both in dw and drw)
-        </sigma>
-      </goroutine>
-    </T>
+                    <select>
+                      <selBranch multiplicity="*"> . </selBranch>  
+                    </select>
+                  <sigma color="red">
+                    <HB color="Orange">
+                      .Map // N:Int<Var:Id> implemented as a map of Var:Id to Set of N:Int
+                    </HB>
+                    <S color="Orchid">
+                      .Set // N:Int, implemented as a set of Int (both in dw and drw)
+                    </S>
+                  </sigma>
+                </goroutine>
+              </T>
     <W color="Aquamarine">
                   .Map // The map is interpreted differently depending on the
       // memory model:

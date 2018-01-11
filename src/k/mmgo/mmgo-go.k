@@ -14,7 +14,15 @@ module MMGO-GO
       \texttt{let \_ = go B in T}.  In order for this rule to apply,
       \texttt{go B} needs to produce a value.  We use $\$unit$ because it is a 
       value that cannot appear in a mmgo program text.*/
-  rule <goroutine> <k> go B:Block => $unit ... </k> <sigma>S</sigma> </goroutine>
-       (.Bag => <goroutine> <k> B </k> <sigma> S </sigma> </goroutine>)
+  rule <goroutine>
+         <k> go B:Block => $unit ... </k>
+         <sigma>S</sigma>
+         <select>_</select>
+       </goroutine>
+       (.Bag => <goroutine>
+                  <k> B </k>
+                  <sigma> S </sigma>
+                  <select> .Bag </select>
+                </goroutine>)
 
 endmodule

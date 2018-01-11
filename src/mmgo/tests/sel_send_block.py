@@ -5,11 +5,11 @@ from mmgo import mmgo
 class Common(myunittest.TestCase):
   def test_k(self):
     self.assertEqual(len(self.config.goroutines), 1)
-    self.assertEqual(self.config.goroutines[0].k, "TODO")
+    self.assertEqual(self.config.goroutines[0].k, "selAux ( . ) ~> #freezerlet_=_in_1 ( _ , 2 )")
     pass
 
   def test_c_forwardq(self):
-    self.assertEqual(self.config.channels[0].forward, [42] + mmgo(None).sig_bot())
+    self.assertEqual(self.config.channels[0].forward, [[42] + mmgo(None).sig_bot()])
     pass
 
   def test_c_backwardq(self):
