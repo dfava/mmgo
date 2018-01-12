@@ -21,16 +21,19 @@ module MMGO-SELECT
          <k> selAux({BHead:LetDef}) => selAux(.K) ... </k>
          <select> ... .Bag => <selBranch> BHead </selBranch> </select>
          <sigma> _ </sigma>
+         <id> _ </id>
        </goroutine> [structural]
   rule <goroutine>
          <k> selAux({BHead:LetChan}) => selAux(.K) ... </k>
          <select> ... .Bag => <selBranch> BHead </selBranch> </select>
          <sigma> _ </sigma>
+         <id> _ </id>
        </goroutine> [structural]
   rule <goroutine>
          <k> selAux({BHead:LetChan} BTail:GBranch) => selAux(BTail) ... </k>
          <select> ... .Bag => <selBranch> BHead </selBranch> </select>
          <sigma> _ </sigma>
+         <id> _ </id>
        </goroutine> [structural]
   /*@
    *  Tear down the select
@@ -39,6 +42,7 @@ module MMGO-SELECT
          <k> selClear => .K ... </k>
          <select> S => .Bag </select>
          <sigma> _ </sigma>
+         <id> _ </id>
        </goroutine> [structural]
 
 
@@ -56,6 +60,7 @@ module MMGO-SELECT
            <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
            <S>  SSet:Set => SSet SSetDP </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -77,6 +82,7 @@ module MMGO-SELECT
            <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
            <S>  SSet:Set => SSet SSetDP </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -102,6 +108,7 @@ module MMGO-SELECT
            <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
            <S>  SSet:Set => SSet SSetDP </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -123,6 +130,7 @@ module MMGO-SELECT
            <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
            <S>  SSet:Set => SSet SSetDP </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -148,6 +156,7 @@ module MMGO-SELECT
            <HB> HMap:Map => mergeHB(HMap, HMapDP) </HB>
            <S>  SSet:Set => SSet SSetDP </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -172,6 +181,7 @@ module MMGO-SELECT
            <HB> HMapR:Map => mergeHB( HMapS, HMapR ) </HB>
            <S>  SSetR:Set => SSetS SSetR </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <goroutine> // Partner sender
          <k> channel(Ref:Int) <- V:Val => $unit </k>
@@ -180,6 +190,7 @@ module MMGO-SELECT
            <S>  SSetS:Set => SSetS SSetR </S>
          </sigma>
          <select>_</select>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -198,6 +209,7 @@ module MMGO-SELECT
            <HB> HMapS:Map => mergeHB( HMapS, HMapR ) </HB>
            <S>  SSetS:Set => SSetS SSetR </S>
          </sigma>
+         <id> _ </id>
        </goroutine>
        <goroutine> // Partner receiver
          <k> <- channel(Ref:Int) => V </k>
@@ -206,6 +218,7 @@ module MMGO-SELECT
            <S>  SSetR:Set => SSetS SSetR </S>
          </sigma>
          <select>_</select>
+         <id> _ </id>
        </goroutine>
        <chan>
          <ref> Ref </ref>
@@ -214,6 +227,7 @@ module MMGO-SELECT
          <backward> .List </backward>
        </chan>
   rule <goroutine> // Sender
+         <id> _ </id>
          <k> selAux(.K) => selClear ~> Ts[$unit/Zs] ... </k>
          <select>
            ...
@@ -226,6 +240,7 @@ module MMGO-SELECT
          </sigma>
        </goroutine>
        <goroutine> // Receiver
+         <id> _ </id>
          <k> selAux(.K) => selClear ~> Tr[V/Zr] ... </k>
          <select>
            ...

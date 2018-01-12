@@ -67,6 +67,7 @@ module MMGO-CHANS
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma>
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -85,6 +86,7 @@ module MMGO-CHANS
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma>
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -123,6 +125,7 @@ module MMGO-CHANS
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -141,6 +144,7 @@ module MMGO-CHANS
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -166,6 +170,7 @@ module MMGO-CHANS
           <S>  SSet:Set => SSet SSetDP </S>
         </sigma> // Change from Sigma to (Sigma + Sigma'')
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <chan>
         <ref> Ref </ref>
@@ -186,6 +191,7 @@ module MMGO-CHANS
           <S>  SSetS:Set => SSetS SSetR </S>
         </sigma>
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
       <goroutine>
         <k> <- channel(Ref:Int) => V ... </k>
@@ -194,6 +200,7 @@ module MMGO-CHANS
           <S>  SSetR:Set => SSetS SSetR </S>
         </sigma>
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
         <chan>
           <ref> Ref </ref>
@@ -213,6 +220,7 @@ module MMGO-CHANS
           <S>  SSet:Set </S>
         </sigma>
         <select> _ </select>
+        <id> _ </id>
       </goroutine>
         <chan>
           <ref> Ref </ref>

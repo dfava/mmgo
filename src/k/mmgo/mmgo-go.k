@@ -18,11 +18,13 @@ module MMGO-GO
          <k> go B:Block => $unit ... </k>
          <sigma>S</sigma>
          <select>_</select>
+         <id>_</id>
        </goroutine>
        (.Bag => <goroutine>
                   <k> B </k>
                   <sigma> S </sigma>
                   <select> .Bag </select>
+                  <id> !N:Int </id>
                 </goroutine>)
 
 endmodule
