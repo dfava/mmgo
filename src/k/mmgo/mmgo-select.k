@@ -242,11 +242,7 @@ module MMGO-SELECT
        <goroutine> // Receiver
          <id> _ </id>
          <k> selAux(.K) => selClear ~> Tr[V/Zr] ... </k>
-         <select>
-           ...
-           <selBranch> (let Zr:Id = <- channel(Ref:Int) in Tr:Term):LetChan </selBranch>
-           ...
-         </select>
+         <selBranch> (let Zr:Id = <- channel(Ref:Int) in Tr:Term):LetChan </selBranch>
          <sigma>
            <HB> HMapR:Map => mergeHB( HMapS, HMapR ) </HB>
            <S>  SSetR:Set => SSetS SSetR </S>
