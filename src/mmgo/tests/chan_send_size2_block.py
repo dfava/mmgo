@@ -1,10 +1,12 @@
 # Copyright (C) 2017 Daniel Fava. All Rights Reserved.
+import re
 import myunittest
 
 class Common(myunittest.TestCase):
   def test_k(self):
     self.assertEqual(len(self.config.goroutines), 1)
-    self.assertEqual(self.config.goroutines[0].k, "channel ( 1 ) <- 6")
+    m = re.match("channel \( .* \) <- 6", self.config.goroutines[0].k)
+    self.assertNotEqual(m, None)
     pass
 
   def test_c_forwardq(self):
@@ -21,7 +23,7 @@ if __name__ == "__main__":
 <generatedTop>
   <T>
     <goroutine>
-      <k> channel ( 1 ) &lt;- 6 </k>
+      <k> channel ( 2 ) &lt;- 6 </k>
       <sigma>
         <HB> .Map </HB>
         <S> .Set </S>
@@ -42,7 +44,7 @@ if __name__ == "__main__":
 <generatedTop>
   <T>
     <goroutine>
-      <k> channel ( 1 ) &lt;- 6 </k>
+      <k> channel ( 2 ) &lt;- 6 </k>
       <sigma>
         <HB> .Map </HB>
         <S> .Set </S>
