@@ -3,7 +3,7 @@
 
 This is an implementation, in the [K-framework](http://www.kframework.org), of a weak memory model for a calculus inspired by the [Go](https://golang.org/) programming language. The model has buffered channel communication as the sole synchronization primitive.
 
-Details of the memory model can be found in the following [technical report](http://folk.uio.no/danielsf/papers/fava2017operational.pdf).
+Details of the memory model can be found in the following [technical report](http://folk.uio.no/danielsf/papers/fava2018operational.pdf).
 
 
 ## Install
@@ -82,4 +82,5 @@ mmgo-run.py mmgo-sc *.mmgo
 
 |Date|Comment|
 |:---|:---|
+|Jan 23, 2018 | Updated [technical report](http://folk.uio.no/danielsf/papers/fava2018operational.pdf) with proof of SC-DRF guarantee |
 |Nov 29, 2017 | Update to test framework<br/>Removed dependency on simplexquery library |
