@@ -7,6 +7,10 @@ module MMGO-COMMON
   /*@ A dummy return for expressions that don't return anything */
   syntax Val ::= "$unit"
 
+  syntax Map ::= mergeHB(Map, Map)
+  rule mergeHB(H1:Map, .Map) => H1:Map [anywhere, structural]
+
+
   /*@ A program starts with a single goroutine which can create new goroutines.
       Thus, a term is a collection of one or more goroutines.
 

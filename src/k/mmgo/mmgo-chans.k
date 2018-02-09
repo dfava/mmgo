@@ -8,9 +8,6 @@ module MMGO-CHANS
 
   syntax Val ::= "channel" "(" Int ")" | "$eot"
 
-  syntax Map ::= mergeHB(Map, Map)
-  rule mergeHB(H1:Map, .Map) => H1:Map [anywhere, structural]
-
   syntax Bool ::= "EotInFQ" "(" List ")"
   syntax Bool ::= "IsEot" "(" List ")"
   rule EotInFQ(.List) => false                      [anywhere, structural]

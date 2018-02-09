@@ -5,7 +5,7 @@ from mmgo import mmgo
 class Common(myunittest.TestCase):
   def test_k(self):
     self.assertEqual(len(self.config.goroutines), 1)
-    self.assertEqual(self.config.goroutines[0].k, "selAux ( . ) ~> #freezerlet_=_in_1 ( _ , 2 )")
+    self.assertEqual(self.config.goroutines[0].k[0:27], "selAux ( . ) ~> #freezerlet")
     pass
 
   def test_c_forwardq(self):
