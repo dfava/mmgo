@@ -1,5 +1,7 @@
 // Copyright (C) 2017 Daniel Fava. All Rights Reserved.
 module MMGO-SYNTAX
+  imports DOMAINS
+
   syntax Type ::= "int" | "bool"
   syntax AExp ::= Int | Id
                 | "(" AExp ")"  [brackets]

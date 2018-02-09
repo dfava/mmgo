@@ -62,14 +62,14 @@ module MMGO-SELECT
          </sigma>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> FQ:List => ListItem( ListItem(V)
            ListItem(HMap)
            ListItem(SSet) ) FQ </forward>
          <backward> _:List (ListItem( ListItem(HMapDP) ListItem(SSetDP) ) => .List) </backward>
-       </chan>
+       </Chan>
        requires EotInFQ( FQ ) ==Bool false
   rule <goroutine>
          <k> selAux(.K) => selClear ~> T[$unit/Z] ... </k>
@@ -84,14 +84,14 @@ module MMGO-SELECT
          </sigma>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> FQ:List => ListItem( ListItem(V)
            ListItem(HMap)
            ListItem(SSet) ) FQ </forward>
          <backward> (ListItem( ListItem(HMapDP) ListItem(SSetDP) ) => .List) </backward>
-       </chan>
+       </Chan>
        requires EotInFQ( FQ ) ==Bool false
 
   /*@
@@ -110,14 +110,14 @@ module MMGO-SELECT
          </sigma>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> ListItem(ListItem(V)
                             ListItem(HMapDP)
                             ListItem(SSetDP) ) => .List </forward>
          <backward> BQ:List => ListItem( ListItem(HMap) ListItem(SSet) ) BQ </backward>
-       </chan>
+       </Chan>
        requires notBool( V ==K $eot )
   rule <goroutine>
          <k> selAux(.K) => selClear ~> T[V/Z] ... </k>
@@ -132,14 +132,14 @@ module MMGO-SELECT
          </sigma>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> _:List (ListItem( ListItem(V)
                            ListItem(HMapDP)
                            ListItem(SSetDP) ) => .List) </forward>
          <backward> BQ:List => ListItem( ListItem(HMap) ListItem(SSet) ) BQ </backward>
-       </chan>
+       </Chan>
        requires notBool( V ==K $eot )
 
   /*@
@@ -158,14 +158,14 @@ module MMGO-SELECT
          </sigma>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> ChanType:Type </type>
          <forward>
            ListItem( ListItem($eot) ListItem(HMapDP) ListItem(SSetDP) )
          </forward>
          <backward> _ </backward>
-       </chan>
+       </Chan>
 
   /*@
    *  Synchronous send/receive rules
@@ -192,12 +192,12 @@ module MMGO-SELECT
          <select>_</select>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> .List </forward>
          <backward> .List </backward>
-       </chan>
+       </Chan>
   rule <goroutine> // Sender
          <k> selAux(.K) => selClear ~> T[$unit/Z] ... </k>
          <select>
@@ -220,12 +220,12 @@ module MMGO-SELECT
          <select>_</select>
          <id> _ </id>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
          <type> _ </type>
          <forward> .List </forward>
          <backward> .List </backward>
-       </chan>
+       </Chan>
   rule <goroutine> // Sender
          <id> _ </id>
          <k> selAux(.K) => selClear ~> Ts[$unit/Zs] ... </k>
@@ -248,12 +248,12 @@ module MMGO-SELECT
            <S>  SSetR:Set => SSetS SSetR </S>
          </sigma>
        </goroutine>
-       <chan>
+       <Chan>
          <ref> Ref:Int </ref>
          <type> _ </type>
          <forward> .List </forward>
          <backward> .List </backward>
-       </chan>
+       </Chan>
 
 
 endmodule

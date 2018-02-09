@@ -29,24 +29,24 @@ module MMGO-CHANS
   // this intermediate state because no one will have the channel reference
   // until the auxiliary reduction rules have completed.
   rule <k> make (chan T:Type, Size:Int ) => makeAux(!N:Int, Size) ... </k>
-       <C> ... .Bag => <chan>
+       <C> ... .Bag => <Chan>
           <ref> !N:Int </ref>
           <type> T </type>
           <forward> .List </forward>
           <backward> .List </backward>
-          </chan>
+          </Chan>
        </C>
        requires Size >=Int 0
   /*@ Place dummy elements on the backward queue of a newly created channel */
   rule <k> makeAux(Ref,0) => channel(Ref) ... </k>  [structural]
   rule <k> makeAux(Ref,Cnt) => makeAux(Ref,Cnt -Int 1) ... </k>
-        <chan>
+        <Chan>
           <ref> Ref </ref>
           <type> _ </type>
           <forward> _ </forward>
           <backward> ... .List => ListItem( ListItem( .Map )
             ListItem( .Set ) ) </backward>
-        </chan>
+        </Chan>
        requires Cnt >Int 0  [structural]
 
 
@@ -69,7 +69,7 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-      <chan>
+      <Chan>
         <ref> Ref </ref>
         <type> _ </type>
         <forward> FQ:List => ListItem( ListItem(V)
@@ -77,7 +77,7 @@ module MMGO-CHANS
           ListItem(SSet) ) FQ </forward>
         <backward> _:List (ListItem( ListItem(HMapDP)
                               ListItem(SSetDP) ) => .List) </backward>
-      </chan>
+      </Chan>
       requires EotInFQ( FQ ) ==Bool false
   rule <goroutine>
         <k> channel(Ref:Int) <- V:Val => $unit ... </k>
@@ -88,7 +88,7 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-      <chan>
+      <Chan>
         <ref> Ref </ref>
         <type> _ </type>
         <forward> FQ:List => ListItem( ListItem(V)
@@ -96,7 +96,7 @@ module MMGO-CHANS
           ListItem(SSet) ) FQ </forward>
         <backward> (ListItem( ListItem(HMapDP)
                               ListItem(SSetDP) ) => .List) </backward>
-      </chan>
+      </Chan>
       requires EotInFQ( FQ ) ==Bool false
 
 
@@ -107,12 +107,12 @@ module MMGO-CHANS
   */
   syntax K ::= "$panic"
   rule <k> channel(Ref:Int) <- V:Val => $panic ... </k>
-       <chan>
+       <Chan>
          <ref> Ref </ref>
         <type> _ </type>
         <forward> FQ:List </forward>
         <backward> _ </backward>
-       </chan>
+       </Chan>
       requires EotInFQ( FQ )
 
 
@@ -127,7 +127,7 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-      <chan>
+      <Chan>
         <ref> Ref </ref>
         <type> _ </type>
         <forward> ListItem( ListItem(V)
@@ -135,7 +135,7 @@ module MMGO-CHANS
                     ListItem(SSetDP) ) => .List </forward>
         <backward> BQ:List => ListItem( ListItem(HMap)
                               ListItem(SSet) ) BQ </backward>
-      </chan>
+      </Chan>
       requires notBool( V ==K $eot )
   rule <goroutine>
         <k> <- channel(Ref:Int) => V ... </k>
@@ -146,7 +146,7 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-      <chan>
+      <Chan>
         <ref> Ref </ref>
         <type> _ </type>
         <forward> _:List (ListItem( ListItem(V)
@@ -154,7 +154,7 @@ module MMGO-CHANS
                           ListItem(SSetDP) ) => .List) </forward>
         <backward> BQ:List => ListItem( ListItem(HMap)
                                         ListItem(SSet) ) BQ </backward>
-      </chan>
+      </Chan>
       requires notBool( V ==K $eot )
 
 
@@ -172,14 +172,14 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-      <chan>
+      <Chan>
         <ref> Ref </ref>
         <type> T:Type </type>
         <forward>
           ListItem( ListItem($eot) ListItem(HMapDP) ListItem(SSetDP) )
         </forward>
         <backward> _ </backward>
-      </chan>
+      </Chan>
 
 
 
@@ -202,12 +202,12 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-        <chan>
+        <Chan>
           <ref> Ref </ref>
           <type> _ </type>
           <forward> .List </forward>
           <backward> .List </backward>
-        </chan>
+        </Chan>
 
 
   /*@ Closing a channel
@@ -222,22 +222,22 @@ module MMGO-CHANS
         <select> _ </select>
         <id> _ </id>
       </goroutine>
-        <chan>
+        <Chan>
           <ref> Ref </ref>
           <type> _ </type>
           <forward> FQ:List => ListItem( ListItem($eot)
                                           ListItem(HMap)
                                           ListItem(SSet) ) FQ </forward>
           <backward> _ </backward>
-        </chan>
+        </Chan>
       requires EotInFQ( FQ ) ==Bool false
   rule <k> close( channel(Ref:Int) ) => $panic ... </k>
-        <chan>
+        <Chan>
           <ref> Ref </ref>
           <type> _ </type>
           <forward> FQ:List </forward>
           <backward> _ </backward>
-        </chan>
+        </Chan>
       requires EotInFQ( FQ )
 
 endmodule

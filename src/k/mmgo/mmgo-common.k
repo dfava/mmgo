@@ -53,12 +53,12 @@ module MMGO-COMMON
                          //    N:Int to Val.
                   </W>
                   <C> // Channels
-                    <chan multiplicity="*">
+                    <Chan multiplicity="*">
                     <ref> . </ref>
                     <type> . </type>
                     <forward> .List </forward>
                     <backward> .List </backward>
-                  </chan>
+                  </Chan>
                 </C>
               </mmgo>
 
