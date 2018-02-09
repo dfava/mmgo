@@ -8,7 +8,9 @@ Details of the memory model can be found in the following [technical report](htt
 
 ## Install
 
-It uses the K executable semantics framework.  Follow installation instructions from [K's github page](https://github.com/kframework/k).  It requires the Java Development Kit, Apache Maven.
+It uses the K executable semantics framework.  Follow installation instructions from [K's github page](https://github.com/runtimeverification/k).  It requires the Java Development Kit, Apache Maven.
+
+(Note that there currently exist two versions of K, one called RV-K and another UIUC-K.  Though the mmGo semantics here works with both, the link above points to RV-K.   RV-K is recommended; UIUC-K is in the process of being deprecated.)
 
 ## Running
 Once K is installed, it is easy to run an example by following the steps:
@@ -22,12 +24,6 @@ kompile mmgo.k
 
 #### 2. ```krun```
 From ```src/k/mmgo-dw```:
-
-```
-krun ../../mmgo/example/example.mmgo | ../../../bin/kprint.py
-```
-
-This pipes the output to a pretty printer in ```bin```.  If you don't have Python (or the pretty printer does not work for you), you can also leave it out:
 
 ```
 krun ../../mmgo/example/example.mmgo
@@ -82,5 +78,6 @@ mmgo-run.py mmgo-sc *.mmgo
 
 |Date|Comment|
 |:---|:---|
+|Feb 9, 2018 | mmGo semantics works on [RV-K](https://github.com/runtimeverification/k) as well as  [UIUC-K](https://github.com/kframework/k) |
 |Jan 23, 2018 | Updated [technical report](http://folk.uio.no/danielsf/papers/fava2018operational.pdf) with proof of SC-DRF guarantee |
 |Nov 29, 2017 | Update to test framework<br/>Removed dependency on simplexquery library |
