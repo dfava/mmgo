@@ -255,5 +255,17 @@ module MMGO-SELECT
          <backward> .List </backward>
        </Chan>
 
+  // The default rule
+  rule <goroutine>
+         <k> selAux(.K) => selClear ~> T[default/Z] ... </k>
+         <select>
+           ...
+           <selBranch> (let Z:Id = default in T:Term):LetDef </selBranch>
+           ...
+         </select>
+         <sigma> _ </sigma>
+         <id> _ </id>
+       </goroutine> [owise]
+
 
 endmodule

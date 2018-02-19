@@ -25,9 +25,15 @@ def TextTestResult_to_str(res):
   else:
     return "PASS"
 
+def get_k_version():
+  cmd_lst = ["kompile", "--version"]
+  res = subprocess.run(cmd_lst, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE, encoding="utf-8")
+  return res.stdout.split()[0]
 
 def build(mmgo_dir, mmgo_bin, dry_run=False, debug=False):
   cmd_lst = ["kompile", mmgo_bin + ".k"]
+  cmd_lst += ["--backend", "java"] if 'RV-K' == get_k_version() else []
   if dry_run:
     print("cd " + mmgo_dir)
   if dry_run or debug:
@@ -53,28 +59,11 @@ def run(mmgo_dir, program, dry_run=False, debug=False):
   return res
 
 
-def check_TODO_remove_OLD(semantics, program, configuration, dry_run=False):
-  import unittest
-  # Update python path if needed
-  mmgo_program_path = os.path.dirname(os.path.abspath(program))
-  if mmgo_program_path not in sys.path:
-    sys.path.append(mmgo_program_path)
-  # Try to import unittest
-  module_name = os.path.splitext(program)[0]
-  if not os.path.isfile(module_name + ".py"):
-    return
-  suite = myunittest.get_test_suite(semantics, module_name, configuration,
-          dry_run)
-  output = io.StringIO()
-  res = unittest.TextTestRunner(stream=output).run(suite)
-  return res
-
-
 def main():
   mmgo_bin = "mmgo"
   parser = argparse.ArgumentParser()
-  parser.add_argument("semantics", help="which semantics to use")
-  parser.add_argument("programs", nargs="+", help="mmgo program(s) to run")
+  parser.add_argument("sem", help="which semantics to use")
+  parser.add_argument("progs", nargs="+", help="mmgo program(s) to run")
   parser.add_argument("-k", help="kompile before running",
                       action="store_true")
   parser.add_argument("-d", help="dry run", action="store_true")
@@ -82,25 +71,26 @@ def main():
   parser.add_argument("-pp", help="pretty print (useful for UIUC-K)", action="store_true")
   args = parser.parse_args()
   end = "\n" if args.d else ""
+  args.sem = 'mmgo-' + args.sem if args.sem in ['sc','dw'] else args.sem
   mmgo_dir = os.path.dirname(os.path.realpath(__file__)) \
               + os.sep + ".." + os.sep + "src" + os.sep + "k" + os.sep
-  mmgo_dir += args.semantics
+  mmgo_dir += args.sem
   if args.k: # Build the semantics before running
-    print("kompile " + args.semantics + " ... ", end=end, flush=True)
+    print("kompile " + args.sem + " ... ", end=end, flush=True)
     ret = build(mmgo_dir, mmgo_bin, args.d)
     print(CompletedProcess_to_str(ret))
     if ret.returncode != 0:
       return
   statuses = []
-  for program in args.programs:
+  for program in args.progs:
     print("Running " + program + " ... ", end=end, flush=True)
     ret = run(mmgo_dir, os.path.abspath(program), args.d)
-    res = myunittest.check(args.semantics, program, None if args.d else ret.stdout.replace("<-","&lt;-"), args.d, output = io.StringIO())
+    res = myunittest.check(args.sem, program, None if args.d else ret.stdout.replace("<-","&lt;-"), args.d, output = io.StringIO())
     check_failed = res != None and (len(res.errors) != 0 or len(res.failures) != 0)
     if (check_failed and args.v) \
-        or (res != None and len(args.programs) == 1):
+        or (res != None and len(args.progs) == 1):
       print(res.stream.getvalue())
-    if len(args.programs) == 1:
+    if len(args.progs) == 1:
       if not args.d:
         print()
         if ret.stdout != '':

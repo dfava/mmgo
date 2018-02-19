@@ -70,5 +70,4 @@ module MMGO-COMMON
   rule <k> int (Z:Id,Zs:Globals => Zs);_ </k>
        <W> WMap:Map => WMap[ Z <- 0 ] </W>
        requires notBool(Z in keys(WMap)) // no repeated declaration
-
 endmodule
